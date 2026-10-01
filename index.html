@@ -271,7 +271,58 @@
 
       <p id="lessonText"></p>
     </div>
+    
+    <div class="card">
+      <h2>🤖 AI Tutor</h2>
 
+      <p>
+        Practice conversations with an AI tutor.
+      </p>
+
+      <button 
+        Practice conversations with an AI tutor.
+      </p>
+
+      <button onclick="startTutor()">
+        Start AI Practice
+      </button>
+
+      <p id="tutorMessage"></p>
+    </div>
+
+    <div class="card">
+      <h2>🔊 Pronunciation</h2>
+
+      <p>
+        Practice listening and speaking Oshiwambo.
+      </p>
+
+      <button onclick="pronunciationInfo()">
+        Practice Pronunciation
+      </button>
+
+      <p id="pronunciationText"></p>
+    </div>
+
+    <div class="card">
+      <h2>📈 My Progress</h2>
+
+      <p id="progress">
+        Lessons completed: 0
+      </p>
+
+      <button onclick="completeLesson()">
+        Mark Lesson Complete
+      </button>
+    </div>
+
+  </main>
+
+  <footer>
+    Oshiwambo AI — Learning Oshiwambo through technology 🇳🇦
+  </footer>
+
+  <script>
     let currentQuiz = 0;
 
 const quizData = [
@@ -345,149 +396,6 @@ function nextQuizQuestion() {
 
   document.getElementById("quizResult").textContent = "";
 }
-
-    <div class="card">
-      <h2>🤖 AI Tutor</h2>
-
-      <p>
-        Practice conversations with an AI tutor.
-      </p>
-
-      <button onclick="startTutor()">
-        Start AI Practice
-      </button>
-
-      <p id="tutorMessage"></p>
-    </div>
-
-    <div class="card">
-      <h2>🔊 Pronunciation</h2>
-
-      <p>
-        Practice listening and speaking Oshiwambo.
-      </p>
-
-      <button onclick="pronunciationInfo()">
-        Practice Pronunciation
-      </button>
-
-      <p id="pronunciationText"></p>
-    </div>
-
-    <div class="card">
-      <h2>📈 My Progress</h2>
-
-      <p id="progress">
-        Lessons completed: 0
-      </p>
-
-      <button onclick="completeLesson()">
-        Mark Lesson Complete
-      </button>
-    </div>
-
-  </main>
-
-  <footer>
-    Oshiwambo AI — Learning Oshiwambo through technology 🇳🇦
-  </footer>
-
-  <script>
-
-    let currentLanguage = "Oshindonga";
-    let lessonsCompleted = 0;
-
-    function chooseLanguage(language) {
-      currentLanguage = language;
-
-      document.getElementById("selectedLanguage").textContent =
-        "Selected: " + language;
-    }
-
-    function showLesson() {
-      document.getElementById("lessonText").textContent =
-        "Your first lesson will teach greetings, introductions and useful everyday expressions.";
-    }
-
-    function checkAnswer(answer) {
-      const result = document.getElementById("quizResult");
-
-      if (answer === "Oshiwambo") {
-        result.textContent = "Correct! 🎉";
-      } else {
-        result.textContent = "Try again!";
-      }
-    }
-
-    function startTutor() {
-      document.getElementById("tutorMessage").textContent =
-        "AI Tutor coming soon. You will be able to practise Oshiwambo conversations here.";
-    }
-
-    function pronunciationInfo() {
-      document.getElementById("pronunciationText").textContent =
-        "Pronunciation practice will be added with audio lessons.";
-    }
-
-    function completeLesson() {
-      lessonsCompleted++;
-
-      document.getElementById("progress").textContent =
-        "Lessons completed: " + lessonsCompleted;
-    }
-
-  </script>
-
-</body>
-</html>
-
-    <div class="card">
-      <h2>🤖 AI Tutor</h2>
-
-      <p>
-        Practice conversations with an AI tutor.
-      </p>
-
-      <button onclick="startTutor()">
-        Start AI Practice
-      </button>
-
-      <p id="tutorMessage"></p>
-    </div>
-
-    <div class="card">
-      <h2>🔊 Pronunciation</h2>
-
-      <p>
-        Practice listening and speaking Oshiwambo.
-      </p>
-
-      <button onclick="pronunciationInfo()">
-        Practice Pronunciation
-      </button>
-
-      <p id="pronunciationText"></p>
-    </div>
-
-    <div class="card">
-      <h2>📈 My Progress</h2>
-
-      <p id="progress">
-        Lessons completed: 0
-      </p>
-
-      <button onclick="completeLesson()">
-        Mark Lesson Complete
-      </button>
-    </div>
-
-  </main>
-
-  <footer>
-    Oshiwambo AI — Learning Oshiwambo through technology 🇳🇦
-  </footer>
-
-  <script>
 
     let currentLanguage = "Oshindonga";
     let lessonsCompleted = 0;
