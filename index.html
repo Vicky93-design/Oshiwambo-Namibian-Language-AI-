@@ -3,98 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Oshiwambo AI</title>
+
+  <title>Oshiwambo AI 🇳🇦</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
+      margin: 0;
       background: #f4f7f5;
-      color: #17221b;
+      color: #222;
     }
 
     header {
-      background: #0b6b3a;
+      background: #006b3c;
       color: white;
-      padding: 28px 18px;
+      padding: 25px 15px;
       text-align: center;
     }
 
     header h1 {
-      margin: 0 0 8px;
-      font-size: 30px;
+      margin: 0 0 10px;
     }
 
-    header p {
-      margin: 0;
-      font-size: 15px;
-    }
-
-    main {
+    .container {
       max-width: 700px;
       margin: auto;
-      padding: 18px;
+      padding: 15px;
     }
 
     .card {
       background: white;
-      border-radius: 16px;
+      margin: 15px 0;
       padding: 20px;
-      margin-bottom: 18px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-    }
-
-    h2 {
-      margin-top: 0;
-      color: #0b6b3a;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
     button {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
       border: none;
-      border-radius: 10px;
-      padding: 12px 16px;
-      margin: 5px;
-      background: #0b6b3a;
+      border-radius: 8px;
+      background: #006b3c;
       color: white;
-      font-size: 15px;
+      font-size: 16px;
       cursor: pointer;
     }
 
     button:hover {
-      background: #084f2b;
+      background: #00552f;
     }
 
-    .language-button {
-      background: #d9eee3;
-      color: #0b6b3a;
-      font-weight: bold;
+    .language-buttons {
+      display: flex;
+      gap: 10px;
     }
 
-    .language-button.active {
-      background: #0b6b3a;
-      color: white;
+    .language-buttons button {
+      width: 50%;
     }
 
     .question {
-      font-size: 20px;
       font-weight: bold;
-      margin-bottom: 12px;
+      font-size: 18px;
     }
 
     #quizResult {
       font-weight: bold;
-      margin-top: 12px;
+      margin-top: 15px;
     }
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #66736b;
-      font-size: 13px;
+    .small {
+      color: #666;
     }
   </style>
 </head>
@@ -103,404 +85,228 @@
 
   <header>
     <h1>Oshiwambo AI 🇳🇦</h1>
-    <p>Learn Oshiwambo with lessons, quizzes and AI practice.</p>
+    <p>Learn Oshiwambo with AI</p>
   </header>
 
-  <main>
+  <div class="container">
 
+    <!-- LANGUAGE CHOICE -->
     <div class="card">
-      <h2>Choose your language</h2>
+      <h2>🌍 Choose Your Language</h2>
 
-      <button class="language-button active" onclick="chooseLanguage('Oshindonga')">
-        Oshindonga
-      </button>
+      <div class="language-buttons">
+        <button onclick="chooseLanguage('Oshindonga')">
+          Oshindonga
+        </button>
 
-      <button class="language-button" onclick="chooseLanguage('Oshikwanyama')">
-        Oshikwanyama
-      </button>
+        <button onclick="chooseLanguage('Oshikwanyama')">
+          Oshikwanyama
+        </button>
+      </div>
 
-      <p id="selectedLanguage">Selected: Oshindonga</p>
+      <p id="languageResult" class="small">
+        Choose a language to begin.
+      </p>
     </div>
 
+
+    <!-- BEGINNER LESSON -->
     <div class="card">
       <h2>📚 Beginner Lesson</h2>
 
-      <p><strong>Greeting:</strong></p>
-      <p>Learn common Oshiwambo greetings and everyday expressions.</p>
+      <p>
+        Welcome to your first Oshiwambo lesson!
+      </p>
 
-      <button onclick="showLesson()">
+      <p>
+        Start by learning simple words and greetings.
+      </p>
+
+      <button onclick="startLesson()">
         Start Lesson
       </button>
 
-      <p id="lessonText"></p>
+      <p id="lessonResult"></p>
     </div>
 
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Oshiwambo AI</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f7f5;
-      color: #17221b;
-    }
-
-    header {
-      background: #0b6b3a;
-      color: white;
-      padding: 28px 18px;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0 0 8px;
-      font-size: 30px;
-    }
-
-    header p {
-      margin: 0;
-      font-size: 15px;
-    }
-
-    main {
-      max-width: 700px;
-      margin: auto;
-      padding: 18px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 18px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-    }
-
-    h2 {
-      margin-top: 0;
-      color: #0b6b3a;
-    }
-
-    button {
-      border: none;
-      border-radius: 10px;
-      padding: 12px 16px;
-      margin: 5px;
-      background: #0b6b3a;
-      color: white;
-      font-size: 15px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #084f2b;
-    }
-
-    .language-button {
-      background: #d9eee3;
-      color: #0b6b3a;
-      font-weight: bold;
-    }
-
-    .language-button.active {
-      background: #0b6b3a;
-      color: white;
-    }
-
-    .question {
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 12px;
-    }
-
-    #quizResult {
-      font-weight: bold;
-      margin-top: 12px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #66736b;
-      font-size: 13px;
-    }
-  </style>
-</head>
-
-<body>
-
-  <header>
-    <h1>Oshiwambo AI 🇳🇦</h1>
-    <p>Learn Oshiwambo with lessons, quizzes and AI practice.</p>
-  </header>
-
-  <main>
-
+    <!-- QUIZ -->
     <div class="card">
-      <h2>Choose your language</h2>
+      <h2>🧠 Oshiwambo Quiz</h2>
 
-      <button class="language-button active" onclick="chooseLanguage('Oshindonga')">
-        Oshindonga
+      <p id="quizQuestion" class="question">
+        What does "Oshiwambo" refer to?
+      </p>
+
+      <button id="answer0" onclick="answerQuiz(0)">
+        A language group spoken in Namibia
       </button>
 
-      <button class="language-button" onclick="chooseLanguage('Oshikwanyama')">
-        Oshikwanyama
+      <button id="answer1" onclick="answerQuiz(1)">
+        A type of food
       </button>
 
-      <p id="selectedLanguage">Selected: Oshindonga</p>
+      <button id="answer2" onclick="answerQuiz(2)">
+        A city in Namibia
+      </button>
+
+      <p id="quizResult"></p>
+
+      <button onclick="nextQuizQuestion()">
+        Next Question
+      </button>
     </div>
 
-    <div class="card">
-      <h2>📚 Beginner Lesson</h2>
 
-      <p><strong>Greeting:</strong></p>
-      <p>Learn common Oshiwambo greetings and everyday expressions.</p>
-
-      <button onclick="showLesson()">
-        Start Lesson
-      </button>
-
-      <p id="lessonText"></p>
-    </div>
-    
+    <!-- AI TUTOR -->
     <div class="card">
       <h2>🤖 AI Tutor</h2>
 
       <p>
-        Practice conversations with an AI tutor.
+        Practice conversations with your future AI Oshiwambo tutor.
       </p>
 
-      <button 
-        Practice conversations with an AI tutor.
+      <p class="small">
+        AI Tutor coming soon.
       </p>
-
-      <button onclick="startTutor()">
-        Start AI Practice
-      </button>
-
-      <p id="tutorMessage"></p>
     </div>
 
+
+    <!-- PRONUNCIATION -->
     <div class="card">
       <h2>🔊 Pronunciation</h2>
 
       <p>
-        Practice listening and speaking Oshiwambo.
+        Practice hearing and speaking Oshiwambo.
       </p>
 
-      <button onclick="pronunciationInfo()">
+      <button onclick="pronunciationMessage()">
         Practice Pronunciation
       </button>
 
-      <p id="pronunciationText"></p>
+      <p id="pronunciationResult"></p>
     </div>
 
+
+    <!-- PROGRESS -->
     <div class="card">
-      <h2>📈 My Progress</h2>
+      <h2>📈 Your Progress</h2>
 
-      <p id="progress">
-        Lessons completed: 0
+      <p>
+        Quiz questions answered:
+        <strong id="progress">0</strong>
       </p>
-
-      <button onclick="completeLesson()">
-        Mark Lesson Complete
-      </button>
     </div>
 
-  </main>
+  </div>
 
-  <footer>
-    Oshiwambo AI — Learning Oshiwambo through technology 🇳🇦
-  </footer>
 
+  <!-- JAVASCRIPT -->
   <script>
-    let currentQuiz = 0;
 
-const quizData = [
-  {
-    question: 'What does "Oshiwambo" refer to?',
-    answers: [
-      'A language group spoken in Namibia',
-      'A type of food',
-      'A city in Namibia'
-    ],
-    correct: 0
-  },
-  {
-    question: 'Which language can you choose on this website?',
-    answers: [
-      'Oshindonga',
-      'Spanish',
-      'French'
-    ],
-    correct: 0
-  },
-  {
-    question: 'Which other language can you choose?',
-    answers: [
-      'German',
-      'Oshikwanyama',
-      'Portuguese'
-    ],
-    correct: 1
-  }
-];
-
-function answerQuiz(answer) {
-  const result = document.getElementById("quizResult");
-
-  if (answer === "correct") {
-    result.textContent = "Correct! 🎉";
-  } else {
-    result.textContent = "Not quite. Try again!";
-  }
-}
-
-function nextQuizQuestion() {
-  currentQuiz++;
-
-  if (currentQuiz >= quizData.length) {
-    currentQuiz = 0;
-  }
-
-  const quiz = quizData[currentQuiz];
-
-  document.getElementById("quizQuestion").textContent =
-    quiz.question;
-
-  const answerButtons = document.querySelectorAll(
-    '#quizQuestion + button, #quizQuestion + button + button, #quizQuestion + button + button + button'
-  );
-
-  answerButtons[0].textContent = quiz.answers[0];
-  answerButtons[1].textContent = quiz.answers[1];
-  answerButtons[2].textContent = quiz.answers[2];
-
-  answerButtons[0].onclick = () =>
-    answerQuiz(quiz.correct === 0 ? "correct" : "wrong");
-
-  answerButtons[1].onclick = () =>
-    answerQuiz(quiz.correct === 1 ? "correct" : "wrong");
-
-  answerButtons[2].onclick = () =>
-    answerQuiz(quiz.correct === 2 ? "correct" : "wrong");
-
-  document.getElementById("quizResult").textContent = "";
-}
-
-    let currentLanguage = "Oshindonga";
-    let lessonsCompleted = 0;
+    /* LANGUAGE */
 
     function chooseLanguage(language) {
-      currentLanguage = language;
-
-      document.getElementById("selectedLanguage").textContent =
-        "Selected: " + language;
+      document.getElementById("languageResult").textContent =
+        "You selected " + language + " 🇳🇦";
     }
 
-    function showLesson() {
-      document.getElementById("lessonText").textContent =
-        "Your first lesson will teach greetings, introductions and useful everyday expressions.";
+
+    /* LESSON */
+
+    function startLesson() {
+      document.getElementById("lessonResult").textContent =
+        "Your first lesson is starting! 📚";
     }
+
+
+    /* QUIZ */
 
     let currentQuiz = 0;
+    let questionsAnswered = 0;
 
-const quizData = [
-  {
-    question: 'What does "Oshiwambo" refer to?',
-    answers: [
-      'A language group spoken in Namibia',
-      'A type of food',
-      'A city in Namibia'
-    ],
-    correct: 0
-  },
-  {
-    question: 'Which language can you choose on this website?',
-    answers: [
-      'Oshindonga',
-      'Spanish',
-      'French'
-    ],
-    correct: 0
-  },
-  {
-    question: 'Which other language can you choose?',
-    answers: [
-      'German',
-      'Oshikwanyama',
-      'Portuguese'
-    ],
-    correct: 1
-  }
-];
+    const quizData = [
+      {
+        question: 'What does "Oshiwambo" refer to?',
+        answers: [
+          "A language group spoken in Namibia",
+          "A type of food",
+          "A city in Namibia"
+        ],
+        correct: 0
+      },
 
-function answerQuiz(answer) {
-  const result = document.getElementById("quizResult");
+      {
+        question: "Which language can you choose on this website?",
+        answers: [
+          "Oshindonga",
+          "Spanish",
+          "French"
+        ],
+        correct: 0
+      },
 
-  if (answer === "correct") {
-    result.textContent = "Correct! 🎉";
-  } else {
-    result.textContent = "Not quite. Try again!";
-  }
-}
+      {
+        question: "Which other language can you choose?",
+        answers: [
+          "German",
+          "Oshikwanyama",
+          "Portuguese"
+        ],
+        correct: 1
+      }
+    ];
 
-function nextQuizQuestion() {
-  currentQuiz++;
 
-  if (currentQuiz >= quizData.length) {
-    currentQuiz = 0;
-  }
+    function answerQuiz(answer) {
 
-  const quiz = quizData[currentQuiz];
+      const quiz = quizData[currentQuiz];
+      const result = document.getElementById("quizResult");
 
-  document.getElementById("quizQuestion").textContent =
-    quiz.question;
-
-  const answerButtons = document.querySelectorAll(
-    '#quizQuestion + button, #quizQuestion + button + button, #quizQuestion + button + button + button'
-  );
-
-  answerButtons[0].textContent = quiz.answers[0];
-  answerButtons[1].textContent = quiz.answers[1];
-  answerButtons[2].textContent = quiz.answers[2];
-
-  answerButtons[0].onclick = () =>
-    answerQuiz(quiz.correct === 0 ? "correct" : "wrong");
-
-  answerButtons[1].onclick = () =>
-    answerQuiz(quiz.correct === 1 ? "correct" : "wrong");
-
-  answerButtons[2].onclick = () =>
-    answerQuiz(quiz.correct === 2 ? "correct" : "wrong");
-
-  document.getElementById("quizResult").textContent = "";
-}
-
-    function startTutor() {
-      document.getElementById("tutorMessage").textContent =
-        "AI Tutor coming soon. You will be able to practise Oshiwambo conversations here.";
-    }
-
-    function pronunciationInfo() {
-      document.getElementById("pronunciationText").textContent =
-        "Pronunciation practice will be added with audio lessons.";
-    }
-
-    function completeLesson() {
-      lessonsCompleted++;
+      questionsAnswered++;
 
       document.getElementById("progress").textContent =
-        "Lessons completed: " + lessonsCompleted;
+        questionsAnswered;
+
+      if (answer === quiz.correct) {
+        result.textContent = "Correct! 🎉";
+      } else {
+        result.textContent = "Not quite. Try again!";
+      }
+    }
+
+
+    function nextQuizQuestion() {
+
+      currentQuiz++;
+
+      if (currentQuiz >= quizData.length) {
+        currentQuiz = 0;
+      }
+
+      const quiz = quizData[currentQuiz];
+
+      document.getElementById("quizQuestion").textContent =
+        quiz.question;
+
+      document.getElementById("answer0").textContent =
+        quiz.answers[0];
+
+      document.getElementById("answer1").textContent =
+        quiz.answers[1];
+
+      document.getElementById("answer2").textContent =
+        quiz.answers[2];
+
+      document.getElementById("quizResult").textContent = "";
+    }
+
+
+    /* PRONUNCIATION */
+
+    function pronunciationMessage() {
+      document.getElementById("pronunciationResult").textContent =
+        "Pronunciation practice will be added soon. 🔊";
     }
 
   </script>
