@@ -103,11 +103,6 @@
       color: #555;
     }
 
-    .example {
-      margin-top: 8px;
-      font-style: italic;
-    }
-
     .question {
       font-weight: bold;
       font-size: 18px;
@@ -279,14 +274,12 @@
       <h2>🔊 Pronunciation</h2>
 
       <p>
-        Practice hearing and speaking Oshiwambo.
+        Tap a word in the lesson to practice hearing it.
       </p>
 
-      <button onclick="pronunciationMessage()">
-        Practice Pronunciation
-      </button>
-
-      <p id="pronunciationResult"></p>
+      <p id="pronunciationResult" class="success">
+        Choose a vocabulary word to begin.
+      </p>
     </div>
 
 
@@ -342,7 +335,6 @@
         "You selected " + language + " 🇳🇦";
     }
 
-
     if (selectedLanguage) {
       document.getElementById("languageResult").textContent =
         "You selected " + selectedLanguage + " 🇳🇦";
@@ -387,7 +379,6 @@
       },
 
       {
-
         title: "Introducing Yourself",
 
         description:
@@ -419,7 +410,6 @@
       },
 
       {
-
         title: "Everyday Words",
 
         description:
@@ -490,9 +480,14 @@
 
         div.innerHTML = `
           <div class="word">${item.word}</div>
+
           <div class="translation">
             ${item.translation}
           </div>
+
+          <button onclick="practiceWord('${item.word.replace(/'/g, "\\'")}')">
+            🔊 Practice
+          </button>
         `;
 
         vocabulary.appendChild(div);
@@ -507,7 +502,9 @@
     function nextLesson() {
 
       if (lessonsCompleted < currentLesson + 1) {
-        lessonsCompleted = currentLesson + 1;
+
+        lessonsCompleted =
+          currentLesson + 1;
 
         localStorage.setItem(
           "lessonsCompleted",
@@ -518,6 +515,7 @@
       currentLesson++;
 
       if (currentLesson >= lessons.length) {
+
         currentLesson = 0;
 
         document.getElementById("lessonComplete").textContent =
@@ -549,6 +547,51 @@
       );
 
       displayLesson();
+
+    }
+
+
+    /* =========================
+       PRONUNCIATION
+    ========================== */
+
+    function practiceWord(word) {
+
+      const result =
+        document.getElementById("pronunciationResult");
+
+      result.textContent =
+        "🔊 Practicing: " + word;
+
+      /*
+        Browser speech synthesis.
+
+        Important:
+        Most browsers do not currently
+        provide a dedicated Oshiwambo voice.
+        We therefore use the browser's
+        available voice as a first test.
+      */
+
+      if ("speechSynthesis" in window) {
+
+        window.speechSynthesis.cancel();
+
+        const speech =
+          new SpeechSynthesisUtterance(word);
+
+        speech.lang = "en";
+
+        speech.rate = 0.8;
+
+        speechSynthesis.speak(speech);
+
+      } else {
+
+        result.textContent =
+          "Your browser does not support speech playback.";
+
+      }
 
     }
 
@@ -613,7 +656,7 @@
 
       {
         question:
-          'Which Oshiwambo language can you choose on this website?',
+          "Which Oshiwambo language can you choose on this website?",
 
         answers: [
           "Oshindonga",
@@ -626,7 +669,7 @@
 
       {
         question:
-          'Which other language can you choose?',
+          "Which other language can you choose?",
 
         answers: [
           "German",
@@ -657,7 +700,8 @@
         return;
       }
 
-      const quiz = quizData[currentQuiz];
+      const quiz =
+        quizData[currentQuiz];
 
       const result =
         document.getElementById("quizResult");
@@ -704,7 +748,8 @@
         currentQuiz = 0;
       }
 
-      const quiz = quizData[currentQuiz];
+      const quiz =
+        quizData[currentQuiz];
 
       document.getElementById("quizQuestion").textContent =
         quiz.question;
@@ -780,18 +825,6 @@
 
       displayLesson();
       updateProgress();
-
-    }
-
-
-    /* =========================
-       PRONUNCIATION
-    ========================== */
-
-    function pronunciationMessage() {
-
-      document.getElementById("pronunciationResult").textContent =
-        "Pronunciation practice will be added soon. 🔊";
 
     }
 
