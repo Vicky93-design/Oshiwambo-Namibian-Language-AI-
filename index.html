@@ -272,23 +272,79 @@
       <p id="lessonText"></p>
     </div>
 
-    <div class="card">
-      <h2>🧠 Quick Quiz</h2>
+    let currentQuiz = 0;
 
-      <p class="question">
-        Which language are you learning?
-      </p>
+const quizData = [
+  {
+    question: 'What does "Oshiwambo" refer to?',
+    answers: [
+      'A language group spoken in Namibia',
+      'A type of food',
+      'A city in Namibia'
+    ],
+    correct: 0
+  },
+  {
+    question: 'Which language can you choose on this website?',
+    answers: [
+      'Oshindonga',
+      'Spanish',
+      'French'
+    ],
+    correct: 0
+  },
+  {
+    question: 'Which other language can you choose?',
+    answers: [
+      'German',
+      'Oshikwanyama',
+      'Portuguese'
+    ],
+    correct: 1
+  }
+];
 
-      <button onclick="checkAnswer('Oshiwambo')">
-        Oshiwambo
-      </button>
+function answerQuiz(answer) {
+  const result = document.getElementById("quizResult");
 
-      <button onclick="checkAnswer('English')">
-        English
-      </button>
+  if (answer === "correct") {
+    result.textContent = "Correct! 🎉";
+  } else {
+    result.textContent = "Not quite. Try again!";
+  }
+}
 
-      <p id="quizResult"></p>
-    </div>
+function nextQuizQuestion() {
+  currentQuiz++;
+
+  if (currentQuiz >= quizData.length) {
+    currentQuiz = 0;
+  }
+
+  const quiz = quizData[currentQuiz];
+
+  document.getElementById("quizQuestion").textContent =
+    quiz.question;
+
+  const answerButtons = document.querySelectorAll(
+    '#quizQuestion + button, #quizQuestion + button + button, #quizQuestion + button + button + button'
+  );
+
+  answerButtons[0].textContent = quiz.answers[0];
+  answerButtons[1].textContent = quiz.answers[1];
+  answerButtons[2].textContent = quiz.answers[2];
+
+  answerButtons[0].onclick = () =>
+    answerQuiz(quiz.correct === 0 ? "correct" : "wrong");
+
+  answerButtons[1].onclick = () =>
+    answerQuiz(quiz.correct === 1 ? "correct" : "wrong");
+
+  answerButtons[2].onclick = () =>
+    answerQuiz(quiz.correct === 2 ? "correct" : "wrong");
+
+  document.getElementById("quizResult").textContent = "";
+}
 
     <div class="card">
       <h2>🤖 AI Tutor</h2>
