@@ -153,6 +153,12 @@
       font-weight: bold;
     }
 
+    .audio-status {
+      color: #006b3c;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
     footer {
       text-align: center;
       padding: 25px;
@@ -236,7 +242,7 @@
       </p>
 
       <button id="answer0" onclick="answerQuiz(0)">
-        A language spoken by some tribes in Namibia
+        A language group spoken in Namibia
       </button>
 
       <button id="answer1" onclick="answerQuiz(1)">
@@ -274,7 +280,7 @@
       <h2>🔊 Pronunciation</h2>
 
       <p>
-        Tap a word in the lesson to practice hearing it.
+        Tap a word to hear its native-speaker recording.
       </p>
 
       <p id="pronunciationResult" class="success">
@@ -357,22 +363,26 @@
 
           {
             word: "Wa uhala po?",
-            translation: "How are you?"
+            translation: "How are you?",
+            audio: "audio/wa-uhala-po.mp3"
           },
 
           {
             word: "Nda uhala po.",
-            translation: "I am fine."
+            translation: "I am fine.",
+            audio: "audio/nda-uhala-po.mp3"
           },
 
           {
             word: "Tangi",
-            translation: "Thank you."
+            translation: "Thank you.",
+            audio: "audio/tangi.mp3"
           },
 
           {
-            word: "Oshili nawa.",
-            translation: "It is fine / It is good."
+            word: "Oshi li nawa.",
+            translation: "It is fine / It is good.",
+            audio: "audio/oshi-li-nawa.mp3"
           }
 
         ]
@@ -387,23 +397,27 @@
         vocabulary: [
 
           {
-            word: "Ongame...",
-            translation: "I am ..."
+            word: "Onda li ...",
+            translation: "I am ...",
+            audio: "audio/onda-li.mp3"
           },
 
           {
             word: "Edhina lyandje ...",
-            translation: "My name is ..."
+            translation: "My name is ...",
+            audio: "audio/edhina-lyandje.mp3"
           },
 
           {
             word: "Onda hala ...",
-            translation: "I like / I want ..."
+            translation: "I like / I want ...",
+            audio: "audio/onda-hala.mp3"
           },
 
           {
-            word: "Tangi unene",
-            translation: "Thank you!"
+            word: "Tangi nonge!",
+            translation: "Thank you!",
+            audio: "audio/tangi-nonge.mp3"
           }
 
         ]
@@ -419,22 +433,26 @@
 
           {
             word: "Ee",
-            translation: "Yes"
+            translation: "Yes",
+            audio: "audio/ee.mp3"
           },
 
           {
             word: "Aawe",
-            translation: "No"
+            translation: "No",
+            audio: "audio/aawe.mp3"
           },
 
           {
             word: "Ombili",
-            translation: "Peace"
+            translation: "Peace",
+            audio: "audio/ombili.mp3"
           },
 
           {
             word: "Nawa",
-            translation: "Good / Fine"
+            translation: "Good / Fine",
+            audio: "audio/nawa.mp3"
           }
 
         ]
@@ -485,7 +503,7 @@
             ${item.translation}
           </div>
 
-          <button onclick="practiceWord('${item.word.replace(/'/g, "\\'")}')">
+          <button onclick="practiceWord('${item.audio}', '${item.word.replace(/'/g, "\\'")}')">
             🔊 Practice
           </button>
         `;
@@ -552,46 +570,26 @@
 
 
     /* =========================
-       PRONUNCIATION
+       NATIVE PRONUNCIATION
     ========================== */
 
-    function practiceWord(word) {
+    function practiceWord(audioFile, word) {
 
       const result =
         document.getElementById("pronunciationResult");
 
       result.textContent =
-        "🔊 Practicing: " + word;
+        "🔊 Playing native pronunciation: " + word;
 
-      /*
-        Browser speech synthesis.
+      const audio =
+        new Audio(audioFile);
 
-        Important:
-        Most browsers do not currently
-        provide a dedicated Oshiwambo voice.
-        We therefore use the browser's
-        available voice as a first test.
-      */
-
-      if ("speechSynthesis" in window) {
-
-        window.speechSynthesis.cancel();
-
-        const speech =
-          new SpeechSynthesisUtterance(word);
-
-        speech.lang = "en";
-
-        speech.rate = 0.8;
-
-        speechSynthesis.speak(speech);
-
-      } else {
+      audio.play().catch(() => {
 
         result.textContent =
-          "Your browser does not support speech playback.";
+          "🎙️ Native recording not added yet for: " + word;
 
-      }
+      });
 
     }
 
